@@ -137,7 +137,7 @@ public:
 		else
 			throw std::string("List is empty.");
 	}
-	Element * GetFirstFromLast() const // (Задание - перебрать в обе стороны)
+	Element * GetFirstFromLast() const // (Task - iterate in both directions)
 	{
 		if(!Empty())
 		{
@@ -183,7 +183,7 @@ public:
 	virtual void Print() const;
 };
 
-//Printable - для вывода информации, Named - для конструктора.
+//Printable - for Print(), Named - for constructor.
 class Shape : public Printable, public virtual Named
 {
 public:
@@ -202,7 +202,7 @@ public:
 	Point();
 	Point(std::string _name, double _x, double _y);
 	void Print() const;
-	double GetX() const; //Для вычисления длины Polyline
+	double GetX() const; //for Polyline::length
 	double GetY() const;
 protected:
 	double x, y;
