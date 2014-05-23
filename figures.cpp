@@ -1,5 +1,12 @@
+/******************************************************************************  
+Created:      23 may 2014  
+Author:       Zakovryashin Andrey  
+Email:        andrey.z.1993@mail.ru  
+******************************************************************************/  
+
 #include <iostream>
 #include <string>
+#include "XList.h"
 #include "figures.h"
 
 double static const pi = 3.1415926535897932;
@@ -51,10 +58,11 @@ double Point::GetY() const
 }	
 void Point::Print() const
 {
-	std::cout << name << ", x = " << x << ", y = " << y << std::endl;
+	this->Printable::Print();
+	std::cout << ", x = " << x << ", y = " << y << std::endl;
 }
 
-Circle::Circle(std::string _name, double _x, double _y, double _radius) : Point (_name, _x, _y)
+Circle::Circle(std::string _name, double _x, double _y, double _radius) : Point(_name, _x, _y)
 {
 	radius = _radius;
 }
@@ -64,35 +72,38 @@ double Circle::GetArea() const
 }
 void Circle::Print() const
 {
-	std::cout << name << ", x = " << x << ", y = " << y << ", radius = " << radius
+	this->Printable::Print();
+	std::cout << ", x = " << x << ", y = " << y << ", radius = " << radius
 			  << ", area = " << GetArea() << std::endl;
 }
 
-Rect::Rect(std::string _name, double _xtop, double _ytop, double _xlength, double _ylength) : Shape(_name)
+Rect::Rect(std::string _name, double _x, double _y, double _width, double _height) : Point(_name, _x, _y)
 {
-	xtop = _xtop;
-	ytop = _ytop;
-	xlength = _xlength;
-	ylength = _ylength;
+	x = _x;
+	y = _y;
+	width = _width;
+	height = _height;
 }
 double Rect::GetArea() const
 {
-	return xlength * ylength;
+	return width * height;
 }
 void Rect::Print() const
 {
-	std::cout << name << ", xtop = " << xtop << ", ytop = " << ytop << ", xlength = " << xlength 
-				<< ", ylength = " << ylength <<  ", area = " << GetArea() << std::endl;
+	this->Printable::Print();
+	std::cout << ", x = " << x << ", y = " << y << ", width = " << width 
+				<< ", height = " << height <<  ", area = " << GetArea() << std::endl;
 }
 
-Square::Square(std::string _name, double _xtop, double _ytop, double _length) : Rect(_name, _xtop, _ytop, _length, _length)
+Square::Square(std::string _name, double _x, double _y, double _length) : Rect(_name, _x, _y, _length, _length)
 {
-	length = xlength;
-	Rect(_name, _xtop, _ytop, _length, _length);
+	length = width;
+	Rect(_name, _x, _y, _length, _length);
 }
 void Square::Print() const
 {
-	std::cout << name << ", xtop = " << xtop << ", ytop = " << ytop << ", length = " << length 
+	this->Printable::Print();
+	std::cout << ", x = " << x << ", y = " << y << ", length = " << length 
 				<<  ", area = " << GetArea() << std::endl;
 }
 
